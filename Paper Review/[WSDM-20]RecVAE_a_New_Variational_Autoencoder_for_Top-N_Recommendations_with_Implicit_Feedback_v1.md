@@ -10,9 +10,9 @@
 
 최근에 이러한 극복하기 위해 오토인코더 기반의 접근이 지속적으로 연구되고 있다. Collaborative Denoising Autoencoder (CDAE)[^1]는 사용자 피드백을 임베딩 (Embedding)하여 콜드 스타트 문제를 해결하였다. Variational Autoencoder (Mult-VAE)[^2]는 적절한 우도 (Likelihood)를 도입하여 향상된 결과를 보여주었다. 이 연구에서는 Mult-VAE의 확장으로서 암시적 피드백 (Implicit Feedback)을 활용하는 Recommender VAE (RecVAE) 를 제안하고 이것의 기여는 아래와 같다.
 
-- 사용자 임베딩을 향상시키는 인코더 네트워크 설계 제안
-- 추천 시스템에 알맞는 적절한 사전분포 제안
-- 암시적 피드백으로 인한 새로운 $\beta$-VAE 제안 
+>- 사용자 임베딩을 향상시키는 인코더 네트워크 설계 제안
+>- 추천 시스템에 알맞는 적절한 사전분포 제안
+>- 암시적 피드백으로 인한 새로운 $\beta$-VAE 제안 
 
 ## **2. Preliminary**  
 
