@@ -72,11 +72,11 @@ Mult-VAE[^2]는 협업 필터링에 적용하기 위해서 우도를 다항 분�
 
 기본적으로, 제안된 모델 RecVAE는 Mult-VAE의 확장이다. DAE 방법을 추가하여 생성모델을 정의한다.
 
- > - $p_ {\theta}(x_ {u} \vert z_ {u}) = \text{Multinomial}(x \vert n_ {u}, \pi(z_ {u}))$
- > - $\pi(z_ {u}) = \text{softmax}(f_ {\theta}(z_ {u}))$
- > - $f_{\theta}(z_ {u})$ is a neural network.
- > - $q_ {\phi}(z_ {u} \vert x_ {u}) = N(z_ {u} \vert \psi_ {\phi}(x_ {u}))$
- > - (Objective) $\mathcal{L} = \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \mathbb{E}_ {p(\tilde{x}_ {u} \vert x_ {u})}\left[ \log p_ {\theta}(x_ {u} \vert z_ {u}) - \beta \text{KL}({q_ {\phi}(z_ {u} \vert \tilde{x}_ {u})} \parallel p(z_ {u}) )\right]$
+- $p_ {\theta}(x_ {u} \vert z_ {u}) = \text{Multinomial}(x \vert n_ {u}, \pi(z_ {u}))$
+- $\pi(z_ {u}) = \text{softmax}(f_ {\theta}(z_ {u}))$
+- $f_{\theta}(z_ {u})$ is a neural network.
+- $q_ {\phi}(z_ {u} \vert x_ {u}) = N(z_ {u} \vert \psi_ {\phi}(x_ {u}))$
+- (Objective) $\mathcal{L} = \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \mathbb{E}_ {p(\tilde{x}_ {u} \vert x_ {u})}\left[ \log p_ {\theta}(x_ {u} \vert z_ {u}) - \beta \text{KL}({q_ {\phi}(z_ {u} \vert \tilde{x}_ {u})} \parallel p(z_ {u}) )\right]$
 
 ### **3.1 Model Architecture**
 
