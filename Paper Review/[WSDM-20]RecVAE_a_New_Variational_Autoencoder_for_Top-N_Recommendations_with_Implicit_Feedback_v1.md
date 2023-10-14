@@ -117,20 +117,24 @@ $\beta$-VAE[^3]은 재표현을 학습하기 위한 좋은 방법이지만 파�
 
 $$
 \begin{align}
-	\mathcal{L} = \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}\left[ \log \text{Multinomial}(x_ {u}^{f} \vert \pi(z_ {u})) - \text{KL}_ {u}^{f}\right] \\
-	= \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})} \left[ \sum_ {a \in X_ {u}^{f}} \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \text{KL}_ {u}^{f}\right] + C \\
-	= \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{f}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C,
+	\mathcal{L} &= \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}\left[ \log \text{Multinomial}(x_ {u}^{f} \vert \pi(z_ {u})) - \text{KL}_ {u}^{f}\right] \\
+	&= \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})} \left[ \sum_ {a \in X_ {u}^{f}} \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \text{KL}_ {u}^{f}\right] + C \\
+	&= \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{f}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C,
 \end{align}
 $$
 
 여기서 $\text{Cat}$는 카테고리 분포이고 $C$는 최적화에 영향을 주지 않는 상수이다. (실제로 $\text{Multinomial}$의 정규화 상수이다.) 부분적 피드백에 대해 주어진 ELBO를 근사시키기 위해서 $q_ {\phi}(z_ {u} \vert x_{u}) \approx q_ {\phi}(z_ {u} \vert x_ {u}^{f})$ 그리고
 $\text{KL} \approx \text{KL} _{u}^{f}$를 가정하자. 위 마지막 식에서 급수의 범위 $X_ {u}^{f}$를 $X_ {u}^{0}$로 대체하고 추가적인 가정을 이용하면,
 
-> $\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C$
-> $\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C$
-> $= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \sum_ {a \in X_ {u}^{0}} \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C$
-> $= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \log \text{Multinomial}(x_ {u} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C$
-
+$$
+\begin{align}
+	&\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C
+	&\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C
+	&= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \sum_ {a \in X_ {u}^{0}} \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C
+	&= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \log \text{Multinomial}(x_ {u} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C
+\end{align}
+$$
+> 
 만약 $u$ 마다 $\vert X_ {u}^{f} \vert$가 일정하다면 새로운 상수 $\gamma = \frac{1}{\vert X_ {u}^{f} \vert}$를 정의하여 최종적으로 다음을 얻는다. (기댓값의 계수는 제거 할 수 있다.)
 
 > $\mathcal{L} \approx \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \log \text{Multinomial}(x_ {u} \vert \pi(z_ {u})) - \gamma \vert X_ {u}^{0}\vert \text{KL}_ {u}\right]$
