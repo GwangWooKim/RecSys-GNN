@@ -128,16 +128,18 @@ $\text{KL} \approx \text{KL} _{u}^{f}$를 가정하자. 위 마지막 식에서 
 
 $$
 \begin{align}
-	&\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C
-	&\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C
-	&= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \sum_ {a \in X_ {u}^{0}} \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C
+	&\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C \\
+	&\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C \\
+	&= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \sum_ {a \in X_ {u}^{0}} \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C \\
 	&= \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \log \text{Multinomial}(x_ {u} \vert \pi(z_ {u})) - \frac{\vert X_ {u}^{0}\vert}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C
 \end{align}
 $$
-> 
+
 만약 $u$ 마다 $\vert X_ {u}^{f} \vert$가 일정하다면 새로운 상수 $\gamma = \frac{1}{\vert X_ {u}^{f} \vert}$를 정의하여 최종적으로 다음을 얻는다. (기댓값의 계수는 제거 할 수 있다.)
 
-> $\mathcal{L} \approx \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \log \text{Multinomial}(x_ {u} \vert \pi(z_ {u})) - \gamma \vert X_ {u}^{0}\vert \text{KL}_ {u}\right]$
+$$
+\mathcal{L} \approx \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[  \log \text{Multinomial}(x_ {u} \vert \pi(z_ {u})) - \gamma \vert X_ {u}^{0}\vert \text{KL}_ {u}\right]
+$$
 
 이와 같은 방법으로 암시적인 피드백이 주어졌을 때 $\beta = \beta(x)$를 $\gamma \vert X_ {u}^{0}\vert$로 선택 할 수 있다. 
 
@@ -145,7 +147,9 @@ $$
 
 섹션 3.1, 3.2, 3.3의 결과를 종합하여 개선 손실 함수를 제안한다.
 
-> $\mathcal{L} _{\text{RecVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \mathbb{E}_ {p(\tilde{x} \vert x)}\left[ \log p_ {\theta}(x \vert z) - \beta(x) \text{KL}({q_ {\phi}(z \vert \tilde{x})} \parallel p(z \vert \phi_ {\text{old}}, x) )\right]$
+$$
+\mathcal{L} _{\text{RecVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \mathbb{E}_ {p(\tilde{x} \vert x)}\left[ \log p_ {\theta}(x \vert z) - \beta(x) \text{KL}({q_ {\phi}(z \vert \tilde{x})} \parallel p(z \vert \phi_ {\text{old}}, x) )\right]
+$$
 
 모델 훈련을 마친 뒤, 새로운 사용자에 $x$에 대해서 $p_ {\theta}( x \vert q_ {\phi}(z \vert x))$은 항목 별 긍정적으로 평가할 확률을 준다. 이를 이용하여 상위 항목을 추천 해줄 수 있다.
 
@@ -184,9 +188,9 @@ RecVAE는 MovieLens-20M[^13], Netflix Prize Dataset[^14], Million Songs Dataset[
 
 테스트 유저 $u$의 항목 $X_ {u}^{t}$와 모델의 (내림차순) 결과 $R_ {u}^{(n)}$에 대해서 $\text{Recall@}k(u)$와 $\text{NDCG@}(k(u)$가 평가 지표로서 사용될 것이다.
 
-> $\text{Recall@}k(u) = \frac{1}{\min(\vert R_ {u}^{(n)} \vert, \vert X_ {u}^{t} \vert)} \sum_{n=1}^{k} 1\left[R_ {u}^{(n)} \in  X_ {u}^{t} \right]$ 
-> $\text{DGG@}k(u) = \sum_{n=1}^{k}\frac{2^{1\left[R_ {u}^{(n)} \in  X_ {u}^{t} \right]}-1}{\log(n+1)}$
-> $\text{NDCG@}(k(u) = \text{DCG@}k(u) / \left( \sum_{n=1}^{\vert X_ {u}^{t} \vert } \frac{1}{\log(n+1)} \right)$
+- $\text{Recall@}k(u) = \frac{1}{\min(\vert R_ {u}^{(n)} \vert, \vert X_ {u}^{t} \vert)} \sum_{n=1}^{k} 1\left[R_ {u}^{(n)} \in  X_ {u}^{t} \right]$
+- $\text{DGG@}k(u) = \sum_{n=1}^{k}\frac{2^{1\left[R_ {u}^{(n)} \in  X_ {u}^{t} \right]}-1}{\log(n+1)}$
+- $\text{NDCG@}(k(u) = \text{DCG@}k(u) / \left( \sum_{n=1}^{\vert X_ {u}^{t} \vert } \frac{1}{\log(n+1)} \right)$
 
 ### **4.4 Results**  
 
