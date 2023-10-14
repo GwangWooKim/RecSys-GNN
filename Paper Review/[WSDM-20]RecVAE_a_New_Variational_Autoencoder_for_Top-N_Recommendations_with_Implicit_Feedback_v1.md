@@ -20,7 +20,9 @@
 
 변분 오토인코더는 복잡한 분포를 학습할 수 있는 잠재 변수 모델이다. 이에 대한 간략한 요약으로 시작하자. 주어진 데이터가 $p_ {true}(x)$를 따르고 모델을 $p_ {\theta}(x)$라고 하자. 잠재변수 $z$를 통해서 모델을 다시 표현 할 수 있다.
 
-> $p_ {\theta}(x) = \int p_ {\theta}(x \vert z)p(z)dz$
+$$
+p_ {\theta}(x) = \int p_ {\theta}(x \vert z)p(z)dz
+$$
 
 이 적분을 계산하는 것은 어려우므로 이것의 하계 (Lower Bound)를 최대화 하는 방법으로 모델이 훈련된다. 이를 ELBO (Evidence Lower Bound)라고 부르며 다음과 같다. 
 
