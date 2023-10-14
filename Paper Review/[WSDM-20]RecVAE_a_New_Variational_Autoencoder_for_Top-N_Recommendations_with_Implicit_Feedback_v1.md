@@ -121,7 +121,7 @@ $$
 = \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{f}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C,
 $$
 
-여기서 $\text{Cat}$는 카테고리 분포이고 $C$는 최적화에 영향을 주지 않는 상수이다. (실제로 $\text{Multinomial}$의 정규화 상수이다.) 부분적 피드백에 대해 주어진 ELBO를 근사시키기 위해서 $q_ {\phi}(z_ {u} \vert x_{u}) \approx q_ {\phi}(z_ {u} \vert x_ {u}^{f})$ 그리고 $\text{KL}_{u} \approx \text{KL}_{u}^{f}$를 가정하자. 위 마지막 식에서 급수의 범위 $X_ {u}^{f}$를 $X_ {u}^{0}$로 대체하고 추가적인 가정을 이용하면,
+여기서 $\text{Cat}$는 카테고리 분포이고 $C$는 최적화에 영향을 주지 않는 상수이다. (실제로 $\text{Multinomial}$의 정규화 상수이다.) 부분적 피드백에 대해 주어진 ELBO를 근사시키기 위해서 $q_ {\phi}(z_ {u} \vert x_{u}) \approx q_ {\phi}(z_ {u} \vert x_ {u}^{f})$ 그리고 $\text{KL} _{u} \approx \text{KL} _{u}^{f}$를 가정하자. 위 마지막 식에서 급수의 범위 $X_ {u}^{f}$를 $X_ {u}^{0}$로 대체하고 추가적인 가정을 이용하면,
 
 > $\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u}^{f})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}^{f}\right] + C$
 > $\approx \frac{X_ {u}^{f}}{X_ {u}^{o}} \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})}  \sum_ {a \in X_ {u}^{0}} \left[  \log \text{Cat}(1_ {a} \vert \pi(z_ {u})) - \frac{1}{\vert X_ {u}^{f}\vert} \text{KL}_ {u}\right] + C$
