@@ -62,11 +62,11 @@ $U$, $I$를 유저와 항목의 집합으로 표기하고 $X$를 암시적 피�
 
 Mult-VAE[^2]는 협업 필터링에 적용하기 위해서 우도를 다항 분포로 가정한 변분 오토인코더 모델이다. $n_ {u}:= \sum_{j} (x_ {u})_ {j}$ 라고 하면 모델은 다음과 같이 정의된다.
 
-> - $z_{u} \sim N(0,I_ {k \times k})$
-> - $f_ {\theta}: \mathbb{R}^{k} \rightarrow \mathbb{R}^{\vert I \vert}$ is a neural network.
-> - $\pi(z_ {u}) \sim \text{softmax}(f_ {\theta}(z_{u}))$ 
-> - $x_ {u} \sim \text{Multinomial}(n_ {u}, \pi(z_ {u}))$
-> - (Objective) $\mathcal{L}_ {\text{Mult-VAE}} = \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[ \log p_ {\theta}(x_ {u} \vert z_ {u}) - \beta \text{KL}({q_ {\phi}(z_{u} \vert x_ {u})} \parallel p(z_ {u}) )\right]$
+- $z_{u} \sim N(0,I_ {k \times k})$
+- $f_ {\theta}: \mathbb{R}^{k} \rightarrow \mathbb{R}^{\vert I \vert}$ is a neural network.
+- $\pi(z_ {u}) \sim \text{softmax}(f_ {\theta}(z_{u}))$ 
+- $x_ {u} \sim \text{Multinomial}(n_ {u}, \pi(z_ {u}))$
+- (Objective) $\mathcal{L}_ {\text{Mult-VAE}} = \mathbb{E}_ {q_ {\phi}(z_ {u} \vert x_ {u})} \left[ \log p_ {\theta}(x_ {u} \vert z_ {u}) - \beta \text{KL}({q_ {\phi}(z_{u} \vert x_ {u})} \parallel p(z_ {u}) )\right]$
 
 ## **3. Method** 
 
