@@ -26,23 +26,33 @@ $$
 
 이 적분을 계산하는 것은 어려우므로 이것의 하계 (Lower Bound)를 최대화 하는 방법으로 모델이 훈련된다. 이를 ELBO (Evidence Lower Bound)라고 부르며 다음과 같다. 
 
->$p_ {\theta}(x) \geq \mathcal{L}_ {\text{VAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \left[ \log p_ {\theta}(x \vert z) - \text{KL}({q_ {\phi}(z \vert x)} \parallel p(z) )\right],$
+$$
+p_ {\theta}(x) \geq \mathcal{L}_ {\text{VAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \left[ \log p_ {\theta}(x \vert z) - \text{KL}({q_ {\phi}(z \vert x)} \parallel p(z) )\right],
+$$
 
 여기서 $\text{KL}$은 KL-divergence를 의미하고 $p(z), q_ {\phi}(z \vert x)$는 각각 사전분포와 변분 분포를 의미한다. $p_ {\theta}(z,x)$를 학습함으로써 변분 오토인코더는 생성모델로서 활용될 수 있다. 또한, $q_ {\phi}(z \vert x)$를 이용한다면 임베딩을 통한 재표현 (Representation)을 얻을 수 있다. $\beta$-VAE[^3]는 더욱 향상된 재표현을 얻기 위해 다음과 같이 변형된 손실 함수를 제안 하였다.
 
->$\mathcal{L}_ {\beta\text{-VAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \left[ \log p_ {\theta}(x \vert z) - \beta \text{KL}({q_ {\phi}(z \vert x)} \parallel p(z) )\right]$
+$$
+\mathcal{L}_ {\beta\text{-VAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \left[ \log p_ {\theta}(x \vert z) - \beta \text{KL}({q_ {\phi}(z \vert x)} \parallel p(z) )\right]
+$$
 
 Denoising variational autoencoders (DVAE)[^4]는 데이터에 노이즈를 강제로 주입하여 재표현을 학습하기 위한 방법이다. 노이즈 분포 $p(\tilde{x} \vert x)$에 대하여 (예를 들어, 가우시안 혹은 베르누이 분포) 변형된 손실 함수를 정의한다.
 
->$\mathcal{L}_ {\text{DVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \mathbb{E}_ {p(\tilde{x} \vert x)} \left[ \log p_ {\theta}(x \vert z) - \text{KL}({q_ {\phi}(z \vert \tilde{x})} \parallel p(z) )\right]$,
+$$
+\mathcal{L}_ {\text{DVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \mathbb{E}_ {p(\tilde{x} \vert x)} \left[ \log p_ {\theta}(x \vert z) - \text{KL}({q_ {\phi}(z \vert \tilde{x})} \parallel p(z) )\right],
+$$
 
 그 결과로서 노이즈가 있는 데이터에 대해서도 의미있는 재표현을 얻을 수 있다. Conditional Variational Autoencoder (CVAE)[^5]는 변분 오토인코더의 또 다른 확장이다. 주어진 데이터가 $x$ 뿐만 아니라 $y$라는 레이블이 있다면 이것에 따른 조건부 확률 분포를 학습 할 수 있다. 
 
->$\mathcal{L}_ {\text{CVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x, y)}\left[ \log p_ {\theta}(x \vert z, y) - \text{KL}({q_ {\phi}(z \vert x, y)} \parallel p(z \vert y) )\right]$
+$$
+\mathcal{L}_ {\text{CVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x, y)}\left[ \log p_ {\theta}(x \vert z, y) - \text{KL}({q_ {\phi}(z \vert x, y)} \parallel p(z \vert y) )\right]
+$$
 
 마지막으로, VAE with Arbitrary Conditioning (VAEAC)[^6]는 결측값 예측을 위해 사용하는 모델이며 협업 필터링 문제와 상당히 비슷하다. 주어진 데이터 $x$에 대해서 결측된 특성을 $x_ {b}$ 나머지를 $x_ {1-b}$ 라고 하자. CVAE에서 $y$ 대신 $(x_ {1-b}, b)$를 사용하면 VAEAC의 손실 함수를 정의할 수 있다.
 
->$\mathcal{L}_ {\text{VAEAC}} = \mathbb{E}_ {q_ {\phi}(z \vert x, b)}\left[ \log p_ {\theta}(x_ {b} \vert z, x_ {1-b}, b) - \text{KL}({q_ {\phi}(z \vert x, b)} \parallel p(z \vert x_ {1-b}, b) )\right],$
+$$
+\mathcal{L}_ {\text{VAEAC}} = \mathbb{E}_ {q_ {\phi}(z \vert x, b)}\left[ \log p_ {\theta}(x_ {b} \vert z, x_ {1-b}, b) - \text{KL}({q_ {\phi}(z \vert x, b)} \parallel p(z \vert x_ {1-b}, b) )\right],
+$$
 
 여기서 $b$는 이진 마스킹 (Binary Masking)을 의미한다. 
 
@@ -52,7 +62,7 @@ $U$, $I$를 유저와 항목의 집합으로 표기하고 $X$를 암시적 피�
 
 Mult-VAE[^2]는 협업 필터링에 적용하기 위해서 우도를 다항 분포로 가정한 변분 오토인코더 모델이다. $n_ {u}:= \sum_{j} (x_ {u})_ {j}$ 라고 하면 모델은 다음과 같이 정의된다.
 
-> - $z_ {u} \sim N(0,I_ {k \times k})$
+> - $z_{u} \sim N(0,I_ {k \times k})$
 > - $f_ {\theta}: \mathbb{R}^{k} \rightarrow \mathbb{R}^{\vert I \vert}$ is a neural network.
 > - $\pi(z_ {u}) \sim \text{softmax}(f_ {\theta}(z_{u}))$ 
 > - $x_ {u} \sim \text{Multinomial}(n_ {u}, \pi(z_ {u}))$
