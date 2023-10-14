@@ -145,10 +145,10 @@ $$
 
 ### **3.4 Summary**
 
-섹션 3.1, 3.2, 3.3의 결과를 종합하여 개선 손실 함수를 제안한다.
+섹션 3.1, 3.2, 3.3의 결과를 종합하여 개선 손실 함수를 제안한다. 
 
 $$
-	\mathcal{L} _{\text{RecVAE}} = \mathbb{E}_ {q_ {\phi}(z \vert x)} \mathbb{E}_ {p(\tilde{x} \vert x)}\left[ \log p_ {\theta}(x \vert z) - \beta(x) \text{KL}({q_ {\phi}(z \vert \tilde{x})} \parallel p(z \vert \phi_ {\text{old}}, x) )\right]
+	\mathcal{L}_{\text{RecVAE}} = \mathbb{E}_{q_{\phi}(z \vert x)} \mathbb{E}_{p(\tilde{x} \vert x)}\left[ \log p_{\theta}(x \vert z) - \beta(x) \text{KL}({q_{\phi}(z \vert \tilde{x})} \parallel p(z \vert \phi_{\text{old}}, x) )\right]
 $$
 
 모델 훈련을 마친 뒤, 새로운 사용자에 $x$에 대해서 $p_ {\theta}( x \vert q_ {\phi}(z \vert x))$은 항목 별 긍정적으로 평가할 확률을 준다. 이를 이용하여 상위 항목을 추천 해줄 수 있다.
