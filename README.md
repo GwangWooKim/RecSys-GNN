@@ -11,6 +11,8 @@ This repository is dedicated to the outcomes of the DS535 class in the fall of 2
 * matplotlib
 * pyarrow
 
-In order to reproduce our results, create a new environment with python == 3.10.12 and run ['setup.sh]. For example, 
+In order to reproduce our results, create a new environment with python == 3.10.12 and run `setup.sh`. For example, 
+
   $ sh setup.sh
+  
 **Note that the shall script is running on cuda 12.1, so modify the [setup.sh] file up to your local machine.**
