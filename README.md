@@ -17,7 +17,7 @@ $ sh setup.sh
 ```
 **Note that the shall script is running on cuda 12.1, so modify the `setup.sh` file up to your local machine.**
 
-## How to use
+## How to run
 All arguments of the implementation are set to reproduce the results of the presentation. We highly recommend running with GPU and using the suggested values that were optimized by our study.
 
 ### Example
@@ -31,6 +31,38 @@ All arguments of the implementation are set to reproduce the results of the pres
 
 ### Description of the outputs
 Once trained the model on the given dataset, you will obtain the following files (dir: ./output/model_del_feature={args.del_feature}) and can check them via `torch.load`.
-* `model_best.pt` :  asd
+* `model_best.pt` : the parameters of the trained model.
+* `model_step_size.pt` : the log of learning rate during training.
+* `model_train_loss.pt` : the log of training loss.
+* `model_val_loss.pt` : the log of validation loss. 
 
+## Evaluation
 
+One example to visualize the training log is as follows:
+
+```python
+import torch
+import matplotlib.pyplot as plt
+
+path = './output/model_del_feature=None' # modify the path if necessary
+lst_train_loss = torch.load(path + '/model_train_loss.pt')
+lst_val_loss = torch.load(path + '/model_val_loss.pt')
+lst_step_size = torch.load(path + '/model_step_size.pt')
+
+plt.figure()
+plt.plot(lst_train_loss, label = 'Train')
+plt.plot(lst_val_loss, label = 'Val')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+
+plt.figure()
+plt.plot(lst_step_size)
+plt.xlabel('Epoch')
+plt.ylabel('lr')
+plt.show()
+```
+
+<img src="/imgs/training_log.png" width="65%" height="65%">
+<img src="/imgs/step_size.png" width="65%" height="65%">
