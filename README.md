@@ -16,3 +16,18 @@ In order to reproduce our results, create a new environment with python == 3.10.
 $ sh setup.sh
 ```
 **Note that the shall script is running on cuda 12.1, so modify the `setup.sh` file up to your local machine.**
+
+## How to use
+All arguments of the implementation are set to reproduce the results of the presentation. We highly recommend running with GPU and using the suggested values that were optimized by our study.
+
+### Example
+    $ python main.py
+* `-s` : Seed. `Default = 42`.
+* `-t` : The length of the prediction interval. `Default = 1`.
+* `-T` : The length of the input timesteps. `Default = 24`.
+* `-e` : Epochs. `Default = 100`.
+* `--lr` : Learning rate. `Default = 0.001`.
+* `--del_feature` (or `-d`): The feature that will not be used in training the model. `Default = None`.
+
+
+
