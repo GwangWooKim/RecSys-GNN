@@ -73,4 +73,4 @@ If you want to visualize quantitative comparisons or prediction results, please 
 
 ## Miscellanea
 
-We conducted not only the mentioned studies but also ablation study and feature importance study. Since these are very tedious processes, they are not implemented in this repository. In fact, you can conduct the ablation study by changing various models in models.py. The feature importance study can be done by entering features one by one to `del_feature`. Please refer to [G4_DS535_final_presentation](https://github.com/GwangWooKim/RecSys-GNN/blob/main/G4_DS535_final_presentation.pdf) for detailed results.
+We conducted not only the mentioned studies but also ablation study and feature importance study. Since these are very tedious processes, they are not implemented in this repository. In fact, you can conduct the ablation study by changing various models in `models.py`. The feature importance study can be done by inputting features one by one to `del_feature`. Please refer to [G4_DS535_final_presentation](https://github.com/GwangWooKim/RecSys-GNN/blob/main/G4_DS535_final_presentation.pdf) for detailed results.
