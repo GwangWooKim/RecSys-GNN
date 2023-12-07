@@ -27,7 +27,10 @@ All arguments of the implementation are set to reproduce the results of the pres
 * `-T` : The length of the input timesteps. `Default = 24`.
 * `-e` : Epochs. `Default = 100`.
 * `--lr` : Learning rate. `Default = 0.001`.
-* `--del_feature` (or `-d`): The feature that will not be used in training the model. `Default = None`.
+* `--del_feature` (or `-d`): The specified feature will not be used to train the model. `Default = None`.
 
+### Description of the outputs
+Once trained the model on the given dataset, you will obtain the following files (dir: ./output/model_del_feature={args.del_feature}) and can check them via `torch.load`.
+* `model_best.pt` :  asd
 
 
