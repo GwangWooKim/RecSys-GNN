@@ -101,7 +101,7 @@ def make_dataloader(df, edge_index, device, T = 24, del_feature = None):
         dataloader.append(data)
     
     if d == 1:
-        print(f'Feature deletion did not work on dataloader_1')
+        # print(f'Feature deletion did not work on dataloader_1')
     if d == 2:
-        print(f'Feature deletion did work on {del_feature}')
+        # print(f'Feature deletion did work on {del_feature}')
     return dataloader
