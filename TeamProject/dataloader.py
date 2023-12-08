@@ -67,9 +67,9 @@ class CustomDataset(Dataset):
       dataloader.append(data)
     
     if d == 1:
-        print(f'Feature deletion did not work on dataloader_2')
+        # print(f'Feature deletion did not work on dataloader_2')
     if d == 2:
-        print(f'Feature deletion did work on {del_feature}')
+        # print(f'Feature deletion did work on {del_feature}')
     return dataloader
 
   def __len__(self): 
