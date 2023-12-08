@@ -30,7 +30,7 @@ All arguments of the implementation are set to reproduce the results of the pres
 * `--del_feature` (or `-d`): The specified feature will not be used to train the model. `Default = None`.
 
 ### Description of the outputs
-Once trained the model on the given dataset, you will obtain the following files (dir: ./output/model_del_feature={args.del_feature}) and can check them via `torch.load`.
+Once trained the model on the given dataset, you will obtain the following files (e.g., in dir: ./output/model_del_feature=None) and can check them via `torch.load`.
 * `model_best.pt` : the parameters of the trained model.
 * `model_step_size.pt` : the log of learning rate during training.
 * `model_train_loss.pt` : the log of training loss.
