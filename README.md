@@ -13,9 +13,9 @@ This repository is dedicated to the results of the DS535 class in the fall of 20
 
 In order to reproduce our results, create a new environment with `python == 3.10.12` and run `setup.sh`. For example, 
 ```
-$ sh setup.sh
+$ sh setup_cuda121.sh
 ```
-:fire:**Note that the shall script is running on cuda 12.1, so modify the `setup.sh` file up to your local machine.**:fire:
+:fire:**Note that the shall script is running on cuda 12.1, so modify the `setup_cuda121.sh` file up to your local machine.**:fire:
 
 ## How to run
 All arguments of the implementation are set to reproduce the results of the presentation. We highly recommend running with GPU and using the suggested values that were optimized by our study.
